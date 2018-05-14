@@ -212,6 +212,7 @@ class MigrationVersion {
  * @return mixed False in case of no file found or empty mapping, array with mapping
  */
 	public function getMapping($type, $cache = true) {
+	    debug("Inside");
 		if ($type !== 'app') {
 			$type = Inflector::camelize($type);
 		}
@@ -445,7 +446,10 @@ class MigrationVersion {
 			$this->setVersion(1, 'Migrations');
 		}
 
+		debug(get_class($this));
+        debug(method_exists($this,'getMapping'));
 		$mapping = $this->getMapping('Migrations');
+		debug($mapping);
 		if (count($mapping) > 1) {
 			end($mapping);
 			$this->run(array(

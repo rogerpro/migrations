@@ -1029,7 +1029,11 @@ TEXT;
  * @return void
  */
 	public function testMigrationStatus() {
+        debug("in test");
 		$this->Shell->Version = new MigrationVersion(array('connection' => 'test'));
+		debug(get_class($this->Shell->Version));
+		debug(get_class($this->Shell));
+        debug(method_exists($this->Shell,'status'));
 		$this->Shell->status();
 		$result = $this->Shell->output;
 		$pattern = <<<TEXT
